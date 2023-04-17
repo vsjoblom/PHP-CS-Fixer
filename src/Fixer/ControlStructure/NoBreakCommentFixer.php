@@ -180,7 +180,7 @@ switch ($foo) {
 
             if ($tokens[$i]->isGivenKind([T_DEFAULT])) {
                 if ($tokens[$tokens->getNextMeaningfulToken($i)]->isGivenKind(T_DOUBLE_ARROW)) {
-                    // This is `default` inside a `match` expression.
+                    // This `default` is inside a `match` expression.
                     continue;
                 }
             }
