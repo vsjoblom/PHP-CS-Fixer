@@ -1268,6 +1268,38 @@ switch ($foo) {
 
         yield [
             '<?php
+                switch ($foo) {
+                    case 1:
+                        foo();
+                        // no break
+                    case 2:
+                        $match = match ($bar) {
+                            1 => "1",
+                            default => "this is not the switch default",
+                        };
+                        break;
+                    default:
+                        echo "PHP8 match expression ";
+                }
+            ',
+            '<?php
+                switch ($foo) {
+                    case 1:
+                        foo();
+                    case 2:
+                        $match = match ($bar) {
+                            1 => "1",
+                            default => "this is not the switch default",
+                        };
+                        break;
+                    default:
+                        echo "PHP8 match expression ";
+                }
+            ',
+        ];
+
+        yield [
+            '<?php
                 match ($foo) {
                     1 => "a",
                     default => "b"
