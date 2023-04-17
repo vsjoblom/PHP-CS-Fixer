@@ -178,6 +178,13 @@ switch ($foo) {
                 continue;
             }
 
+            if ($tokens[$i]->isGivenKind([T_DEFAULT])) {
+                if ($tokens[$tokens->getNextMeaningfulToken($i)]->isGivenKind(T_DOUBLE_ARROW)) {
+                    // This is `default` inside a `match` expression.
+                    continue;
+                }
+            }
+
             if ($tokens[$i]->isGivenKind([T_CASE, T_DEFAULT])) {
                 if (!$empty && $fallThrough) {
                     if (null !== $commentPosition && $tokens->getPrevNonWhitespace($i) !== $commentPosition) {
